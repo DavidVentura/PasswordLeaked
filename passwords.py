@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import ff_dec
+import chrome
 import requests
 import hashlib
 
@@ -33,9 +34,11 @@ def hacked_passwords(info):
 
 def get_passwords(browser):
     if browser == "firefox":
-        data = ff_dec.main()
-        return data
+        return ff_dec.main()
+    elif browser == "chrome":
+        return chrome.main()
 
-info = get_passwords("firefox")
+#info = get_passwords("firefox")
+info = get_passwords("chrome")
 for item in hacked_passwords(info):
     print(item)
