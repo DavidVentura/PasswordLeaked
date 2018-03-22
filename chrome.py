@@ -3,7 +3,7 @@ import sys
 import os
 import sqlite3
 def get_db():
-    if sys.platform == "nt":
+    if sys.platform == "win32":
         return "%s/../Local/Google/Chrome/User Data/Default/Login Data" % os.environ['APPDATA']
     return "%s/Login Data" % os.environ['HOME'] # Testing on linux
 
@@ -18,7 +18,7 @@ def read_db(db):
     import win32crypt
     ret = []
     for url, user, pwd in login_data:
-        pwd = win32crypt.CryptUnprotectedData(pwd, None, None, None, 0)[1]
+        pwd = win32crypt.CryptUnprotectData(pwd, None, None, None, 0)[1]
         ret.append((url, user, pwd))
     return ret
 
